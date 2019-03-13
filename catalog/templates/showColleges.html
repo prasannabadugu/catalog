@@ -1,0 +1,48 @@
+{% include 'nav.html' %}
+<div class="main">
+{% block content %}
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	        <div class="alert alert-success alert-dismissable animated fadeIn">
+	            {% for message in messages %}
+	            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+	            <p class="h4"><strong>{{ messassge }}</strong></p>
+	            {% endfor %}
+	        </div>
+	{% endif %}	    
+{% endwith %}
+{% if 'username' in session %}
+<button type="button" class="btn btn-warning" style="margin: 5px 0px 5px 25px;background-color:#34495E"><a href="{{url_for('addCollegeDetails',cgname=cgs.st_name)}}" style="text-decoration: none;"><strong style="color:white;">Add New College</strong></a></button>
+
+{% endif %}
+<div class="row" style="margin: 10px;">
+{% for cge in cges %}
+
+	<div class="col-sm-4 text-center" >
+		<div class="panel panel-primary" style="color:#34495E;border-color:#34495E;">
+			<div class="panel-heading" style="background-color:#34495E" >
+				<h4 >{{ cge.clg_name }}</h4>
+			</div>
+			<div class="panel-body text-center"style="background-color:#CEF6F5">
+				<table >
+					<tr><th>COLLEGE NAME</th><td>:</td><td><h5>{{ cge.clg_name }}</h5></td></tr>
+					<tr><th>BRANCHES</th><td>:</td><td><h5>{{ cge.branches }}</h5></td></tr>
+					<tr><th>ESTABLISHED YEAR</th><td>:</td><td><h5>{{ cge.esta_year}}</h5></td></tr>
+					<tr><th>PHONE NUMBER</th><td>:</td><td><h5>{{ cge.clg_phn}}</h5></td></tr>
+					<tr><th>EMAIL ID</th><td>:</td><td><h5>{{ cge.clg_email}}</h5></td></tr>
+					<tr><th>WEBSITE</th><td>:</td><td><h5>{{ cge.web_site}}</h5></td></tr>
+				</table>
+			</div>
+			{% if 'username' in session %}
+			<div class="panel-footer" style="background-color:#CEF6F5;">
+					<button type="button" class="btn btn-info"><a href="{{ url_for('editCollege',cgid=cgs.id,cgename=cge.clg_name) }}"style="text-decoration: none;color:#F7F9F9;">EDIT</a></button>
+					<button type="button" class="btn btn-danger"><a href="{{ url_for('deleteCollege',cgid=cgs.id,cgename=cge.clg_name)}}"style="text-decoration: none;color:#F7F9F9;">DELETE</a></button>
+			</div>
+			{% endif %}	
+			
+		</div>
+	</div>
+{% endfor %}
+</div>
+{% endblock content %}
+</div>

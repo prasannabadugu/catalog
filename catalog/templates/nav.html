@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Engineering colleges</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//apis.google.com/js/platform.js?onload=start"> </script>
+  <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+  <style>
+    body {
+      font-family:sans-serif;
+    }
+
+    .sidenav {
+      height: 99.2%;
+      width: 309.5px;
+      position: fixed;
+      z-index: 1;
+      top: 51px;
+      left: 0;
+      background-color:#5D6D7E;
+      overflow-x: hidden;
+      padding-top: 21px;
+    }
+
+    .sidenav a {
+      padding: 6px 6px 6px 31px;
+      text-decoration: none;
+      font-size: 19.2px;
+      color:#FDFEFE ;
+      display: block;
+    }
+
+    .sidenav a:hover {
+      color: #C70039;
+    }
+	li a:hover{
+	color:34495E;
+	}
+
+    .main {
+      margin-left: 301px; /* Same as the width of the sidenav */
+
+    }
+
+    @media screen and (max-height: 449px) {
+      .sidenav {padding-top: 16px;}
+      .sidenav a {font-size: 19px;}
+    }
+  </style>
+  {% block head %}{% endblock head %}
+</head>
+<body style="background-color:#CEF6F5">
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <script>
+            var messages = {{ messages | safe }};
+            for (var i=0; i<messages.length; i++) {
+              alert(messages[i]);
+            }
+          </script>
+        {% endif %}
+{% endwith %}
+<nav class="navbar navbar-inverse  navbar-fixed-top">
+  <div class="container-fluid" style="background-color:#5D6D7E; padding-right:30px;">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{{ url_for('home') }}" style="color:#FDFEFE;font-size:170;" onMouseOver="this.style.color='#FF0000'"    onMouseOut="this.style.color='#FDFEFE'" 
+><b><i> Top Engineering colleges</b></i></a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      {% if 'username' in session %}
+            <li style="padding-top:8px;"><button class="btn btn-warning mr-sm-2" style="margin-top: 4.7px;background-color:#34495E;"><a href="{{ url_for('addStateName')}}" style="color:#FDFEFE;">ADD STATE</a></button></li>
+            <li style="margin: 10px;"><p class="text-primary mr-sm-2" style="color:#FDFEFE;font-size:20px;"><b>{{ session.username }}</b></p></li>
+			
+            <li style="background-color:#34495E;border-radius: 5px;margin-top: 4.7px;margin-bottom: 4.7px;"><a href="{{ url_for('logout')}}"><span class="glyphicon glyphicon-log-in" ></span> LOGOUT</a></li>
+      {% else %}
+            <li style="background-color:#34495E;border-radius: 5px;margin-top: 4.7px;margin-bottom: 4.7px;"><a href="{{ url_for('showLogin')}}"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
+      {% endif %}
+      
+    </ul>
+  </div>
+</nav>
+  
+<div class="sidenav" >
+  <table>
+      {% for cg in cgs_cat %}
+      <tr>
+          <td><a href="{{ url_for('showStates',cgid=cg.id)}}">{{cg.st_name}}</a></td>
+          {% if 'username' in session %}
+            <td><a href = "{{ url_for('editCollegeCategory',cgid=cg.id)}}">
+            <span class="glyphicon glyphicon-pencil pull-right " data-toggle="tooltip" title="Edit State" data-placement="bottom"> </span> </a></td>
+            <td><a href = "{{ url_for('deleteCollegeCategory',cgid=cg.id)}}">
+            <span class="glyphicon glyphicon-trash pull-right" data-toggle="tooltip" title="Delete State" data-placement="top"> </span> </a></td>  
+          {% endif %}   
+        </tr>              
+      {% endfor %}
+  </table>
+</div>
+<div class="container">
+
+      <div class="main" style="margin-top: 100px;">
+        
+            {% block content %}
+              
+            {% endblock content %}
+          
+        </div>
+  </div>
+  
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% include 'nav.html' %}
+<div class="main">
+{% block content %}
+
+<div class="">
+		<div class="mr-sm-2 mb-2 col-sm-8" style="margin: 10px;">
+			<form action="{{ url_for('editCollege',cgid=cgid,cgename=collegedetails.clg_name)}}" method="POST">
+				<div class="panel panel-info"style="border-color:#5D6D7E">
+				  <div class="panel-heading"style="background-color:#5D6D7E;color:white;">Edit colleg Details</div>
+				  <div class="panel-body">
+				  	
+					  <div class="form-group">
+					  	<label class="text-primary" for="name"style="color:#5D6D7E;">Enter college Name:</label>
+					    <input type="name" class="form-control" name="name" value="{{collegedetails.clg_name}}">
+					  </div>
+					  <div class="form-group">
+					  	<label class="text-primary" for="name"style="color:#5D6D7E;">Enter Branches:</label>
+					    <input type="name" class="form-control" name="branches" value="{{collegedetails.branches}}">
+					  </div>
+					  <div class="form-group">
+					  	<label class="text-primary" for="year"style="color:#5D6D7E;">Enter  Established Year:</label>
+					    <input type="text" class="form-control" name="year" value="{{collegedetails.esta_year}}">
+					  </div>
+				
+					  <div class="text-primary" class="form-group">
+					  	<label for="cc"style="color:#5D6D7E;">Enter phone number:</label>
+					    <input type="text" class="form-control" name="phn" value="{{collegedetails.clg_phn}}">
+					  </div>
+					  <div class="form-group">
+					  	<label class="text-primary" for="price"style="color:#5D6D7E;">Enter email id:</label>
+					    <input type="text" class="form-control" name="email" value="{{collegedetails.clg_email}}">
+					  </div>
+					  <div class="form-group">
+					  	<label class="text-primary" for="byketype"style="color:#5D6D7E;">Enter website:</label>
+					    <input type="text" class="form-control" name="website" value="{{collegedetails.web_site}}">
+					  </div>					  
+				  </div> 
+				  <div class="panel-footer text-center"><input type="submit" class="btn btn-primary" value="Edit" style="background-color:#5D6D7E"></div>
+				</div>
+				</form>
+			</div>
+</div>
+{% endblock content %}

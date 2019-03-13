@@ -1,0 +1,27 @@
+.header1{
+			background-color:pink;   
+			color:#fff;     
+			border-color: #080808;     
+			min-height: 50px;     
+			border: 5px solid transparent; 
+		}
+		
+.inner-header{
+			width:80%;     
+			margin:auto; 
+		}
+.logo{
+		float: left;     
+		height: 49px;     
+		padding: 149px;     
+		font-size: 21px;     
+		font-weight: bold; 
+	}
+.header-link{
+			 float:right;     
+			 font-size:15px;     
+			 height: 51px;     
+			 padding: 14px 14px;     
+			 font-size:15px;     
+			 font-weight: bold; 
+		}

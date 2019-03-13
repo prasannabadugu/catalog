@@ -1,0 +1,22 @@
+{% include 'nav.html' %}
+<div class="main">
+{% block content %}
+    
+
+	<div class="">
+		<div style="width: 500px;">
+			
+		
+			<div class="panel panel-primary" style="margin: 20px;border-color:#34495E;">
+				<div class="panel-heading" style="background-color:#34495E;color:white;">ADD STATE NAME:</div>
+				<div class="panel-body">
+					<form class="form-inline" action="{{ url_for('addStateName')}}" method="POST">
+						  <label for="email" class="mr-sm-2">Enter  State Name:</label>
+						  <input type="text" class="form-control mb-2 mr-sm-2" name="name" placeholder="Enter state Name" required><br>
+						  <input type="submit" class="btn btn-primary mb-2" value="Add State" style="background-color:#34495E">
+					</form>
+				</div>
+			</div>	
+		</div>	
+	</div>
+{% endblock content %}
